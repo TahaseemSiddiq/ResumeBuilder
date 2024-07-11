@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Resume-4(withoutphoto).css">
+    <style>
+        .resume-wrapper {
+            width: 80%; /* Increased width */
+            margin: 0 auto;
+        }
+        .header h1 {
+            font-size: 1.5rem; /* Reduced font size */
+        }
+        .contact-info p {
+            font-size: 1rem; /* Reduced font size */
+        }
+        .section-title {
+            font-size: 1.25rem; /* Reduced font size */
+        }
+        .section-content p, .section-content li {
+            font-size: 1rem; /* Reduced font size */
+        }
+        .btn-lg {
+            font-size: 1rem; /* Adjusted button font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cv-form">
+        <br><br>
+        <h1 class="text-center">Resume Generator</h1>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <br><br>
+                    <input type="text" class="form-control" id="nameField" placeholder="Enter Your Name">
+                    <br>
+                    <input type="number" class="form-control" id="phoneField" placeholder="Enter Phone Number">
+                    <br>
+                    <textarea name="" id="addressField" placeholder="Enter Your Address" class="form-control" rows="3"></textarea>
+                    <br>
+                    <p class="text-secondary text-center">Important Links</p>
+                    <br>
+                    <input type="link" class="form-control" id="emailField" placeholder="Enter Email">
+                    <br>
+                    <input type="link" class="form-control" id="LinkedInField" placeholder="Enter LinkedIn link">
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Professional Information</h3>
+                <br><br>
+                <div class="form-group mt-2" id="skills">
+                    <p class="text-secondary text-center">Skills</p>
+                    <textarea name="" rows="3" placeholder="Enter Skill" class="form-control skillField" rows="3"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addSkill">
+                        <button class="btn-lg btn-primary" onclick="addNewSkillField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="AcadamicQualification">
+                    <p class="text-secondary text-center">Academic Qualifications</p>
+                    <textarea name="" rows="3" placeholder="Enter Academic Qualification" class="form-control qualificationField" rows="3"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addQualification">
+                        <button class="btn-lg btn-primary" onclick="addNewQualificationField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group mt-2">
+                    <textarea name="" id="objectiveField" placeholder="Enter Objective" class="form-control" rows="3"></textarea>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="projects">
+                    <p class="text-secondary text-center">Projects</p>
+                    <textarea name="" rows="3" placeholder="Enter Project" class="form-control projectField" rows="3"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addProject">
+                        <button class="btn-lg btn-primary" onclick="addNewProjectField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-lg btn-primary" onclick="generateCV()">Generate Resume</button>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+    <div class="resume-wrapper" id="cv-template" style="display: none;">
+        <!-- Header -->
+        <div class="header">
+            <h1 id="name">Full Name</h1>
+        </div>
+        <div class="contact-info">
+            <p id="phone">Contact: (123) 456-7890</p>
+            <p id="address">Address: 123 Main St, City, Country</p>
+            <p><a href="#1" id="email">example@gmail.com</a></p>
+            <p><a href="#1" id="LinkedIn">https://www.LinkedIn.com/userName</a></p>
+        </div>
+        <div class="content">
+            <!-- Left Column -->
+            <div class="column">
+                <!-- Skills -->
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div class="section-content" id="skillsList">
+                    </div>
+                </div>
+
+                <!-- Academic Qualifications -->
+                <div class="section">
+                    <div class="section-title">Academic Qualifications</div>
+                    <div class="section-content" id="qualificationList">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="column">
+                <!-- Objective -->
+                <div class="section">
+                    <div class="section-title">Objective</div>
+                    <div class="section-content">
+                        <p id="objective">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="section">
+                    <div class="section-title">Projects</div>
+                    <div class="section-content" id="projectList">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 text-center" id="printButtonContainer" style="display: none;">
+        <button class="btn btn-lg btn-primary" onclick="printCV()"> Print Resume </button>
+    </div>
+    <br><br>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function addNewSkillField() {
+            const newNode = document.createElement('textarea');
+            newNode.classList.add('form-control', 'skillField', 'mt-2');
+            newNode.setAttribute('rows', 3);
+            newNode.setAttribute('placeholder', 'Enter Skill');
+            document.getElementById('skills').insertBefore(newNode, document.getElementById('addSkill'));
+        }
+
+        function addNewQualificationField() {
+            const newNode = document.createElement('textarea');
+            newNode.classList.add('form-control', 'qualificationField', 'mt-2');
+            newNode.setAttribute('rows', 3);
+            newNode.setAttribute('placeholder', 'Enter Academic Qualification');
+            document.getElementById('AcadamicQualification').insertBefore(newNode, document.getElementById('addQualification'));
+        }
+
+        function addNewProjectField() {
+            const newNode = document.createElement('textarea');
+            newNode.classList.add('form-control', 'projectField', 'mt-2');
+            newNode.setAttribute('rows', 3);
+            newNode.setAttribute('placeholder', 'Enter Project');
+            document.getElementById('projects').insertBefore(newNode, document.getElementById('addProject'));
+        }
+
+        function generateCV() {
+            document.getElementById('cv-form').style.display = 'none';
+            document.getElementById('cv-template').style.display = 'block';
+            document.getElementById('printButtonContainer').style.display = 'block';
+
+            document.getElementById('name').innerHTML = document.getElementById('nameField').value;
+            document.getElementById('phone').innerHTML = document.getElementById('phoneField').value;
+            document.getElementById('address').innerHTML = document.getElementById('addressField').value;
+            document.getElementById('email').innerHTML = document.getElementById('emailField').value;
+            document.getElementById('LinkedIn').innerHTML = document.getElementById('LinkedInField').value;
+            document.getElementById('objective').innerHTML = document.getElementById('objectiveField').value;
+
+            let skills = document.getElementsByClassName('skillField');
+            let skillsList = document.getElementById('skillsList');
+            for (let skill of skills) {
+                let listItem = document.createElement('li');
+                listItem.textContent = skill.value;
+                skillsList.appendChild(listItem);
+            }
+
+            let qualifications = document.getElementsByClassName('qualificationField');
+            let qualificationList = document.getElementById('qualificationList');
+            for (let qualification of qualifications) {
+                let listItem = document.createElement('li');
+                listItem.textContent = qualification.value;
+                qualificationList.appendChild(listItem);
+            }
+
+            let projects = document.getElementsByClassName('projectField');
+            let projectList = document.getElementById('projectList');
+            for (let project of projects) {
+                let listItem = document.createElement('li');
+                listItem.textContent = project.value;
+                projectList.appendChild(listItem);
+            }
+        }
+
+        function printCV() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
+

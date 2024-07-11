@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Resume-1(withphoto).css">
+</head>
+<body>
+    <div class="container" id="cv-form">
+        <br><br>
+        <h1 class="text-center">Resume Generator</h1>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Personal information</h3>
+                <div class="form-group">
+                    <br><br>
+                    <input type="text" class="form-control mb-3" id="nameField" placeholder="Enter Your Name">
+                    <br>
+                    <input type="number" class="form-control mb-3" id="phoneField" placeholder="Enter Phone Number">
+                    <br>
+                    <textarea id="addressField" placeholder="Enter Your Address" class="form-control mb-3" rows="7"></textarea>
+                    <br>
+                    <p class="text-secondary text-center">Important Links</p>
+                    <br>
+                    <input type="link" class="form-control mb-3" id="emailField" placeholder="Enter Email link">
+                    <br>
+                    <input type="link" class="form-control mb-3" id="LinkedInField" placeholder="Enter LinkedIn link">
+                    <br>
+                    <p class="text-secondary text-center">Skills</p>
+                    <div id="skills-container" class="mb-3">
+                        <input type="text" class="form-control mt-2" placeholder="Enter a Skill">
+                    </div>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewSkillField()">Add Skill</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Professional Information</h3>
+                <br><br>
+                <div class="form-group mt-2 mb-3">
+                    <textarea id="objectiveField" placeholder="Enter Objective " class="form-control" rows="7"></textarea>
+                </div>
+                <br>
+                <div class="form-group mt-2 mb-3" id="AcademicQualification">
+                    <p class="text-secondary text-center">Academic Qualifications</p>
+                    <textarea rows="3" placeholder="Enter Academic Qualifications" class="form-control QualificationField mt-2 mb-3"></textarea>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewAcademicQualificationField()">Add</button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group mt-2 mb-3" id="Projects">
+                    <p class="text-secondary text-center">Projects</p>
+                    <textarea rows="3" placeholder="Enter Projects" class="form-control ProjectField mt-2 mb-3"></textarea>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewProjectField()">Add</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-lg btn-primary" onclick="generateCV()">Generate Resume</button>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+    <div class="resume-wrapper" id="resume-template" style="display:none;">
+        <div class="container-fluid resume-border" id="cv-template"></br></br>
+            <div class="row">
+                <div class="col-md-4 text-center"></br></br>
+                    <div class="container">
+                        <p id="phone">Contact Number</p>
+                        <p id="address">Permanent Address (Location)</p></br>
+                        <hr />
+                        <p><a href="#1" id="email"><example class="gmaill com"></example></a></p>
+                        <p><a href="#1" id="LinkedIn">https://www.LinkedIn.com/userName</a></p></br>
+                        <hr /></br>
+                        <h4>Skills</h4>
+                        <ul id="Skills">
+                            <!-- Skills will be added here -->
+                        </ul>
+                    </div>
+                </div></br></br>
+                <div class="col-md-8">
+                    <h1 id="name">Full Name</h1>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Objective</h3>
+                        </div>
+                        <div class="card-body" id="objective">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis eaque sint quaerat dolore temporibus ex atque cupiditate, ad, optio ullam dolores aliquid veritatis dolorem!</p>
+                        </div>
+                    </div></br></br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Academic Qualifications</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="Qualification">
+                                <li>Qualification 1</li>
+                                <li>Qualification 2</li>
+                                <li>Qualification 3</li>
+                            </ul>
+                        </div>
+                    </div></br></br>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="card-body" id="ProjectsList">
+                            <div class="project">
+                                <h5>Project Title 1</h5>
+                                <p>Description of the project, technologies used, and your role.</p>
+                            </div>
+                            <div class="project">
+                                <h5>Project Title 2</h5>
+                                <p>Description of the project, technologies used, and your role.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-3 text-center" id="print-button" style="display:none;">
+        <button class="btn btn-lg btn-primary" onclick="printCV()">Print Resume</button>
+    </div>
+    <br><br>
+
+<script>
+function addNewSkillField() {
+    const newNode = document.createElement('input');
+    newNode.setAttribute('type', 'text');
+    newNode.setAttribute('class', 'form-control mt-2');
+    newNode.setAttribute('placeholder', 'Enter a Skill');
+    document.getElementById('skills-container').appendChild(newNode);
+}
+
+function addNewAcademicQualificationField() {
+    const newNode = document.createElement('textarea');
+    newNode.setAttribute('rows', '3');
+    newNode.setAttribute('placeholder', 'Enter Academic Qualifications');
+    newNode.setAttribute('class', 'form-control QualificationField mt-2 mb-3');
+    document.getElementById('AcademicQualification').appendChild(newNode);
+}
+
+function addNewProjectField() {
+    const newNode = document.createElement('textarea');
+    newNode.setAttribute('rows', '3');
+    newNode.setAttribute('placeholder', 'Enter Projects');
+    newNode.setAttribute('class', 'form-control ProjectField mt-2 mb-3');
+    document.getElementById('Projects').appendChild(newNode);
+}
+
+function generateCV() {
+    // Hide form and show resume
+    document.getElementById('cv-form').style.display = 'none';
+    document.getElementById('resume-template').style.display = 'block';
+    document.getElementById('print-button').style.display = 'block';
+
+    // Basic info
+    document.getElementById('name').innerHTML = document.getElementById('nameField').value;
+    document.getElementById('phone').innerHTML = document.getElementById('phoneField').value;
+    document.getElementById('address').innerHTML = document.getElementById('addressField').value;
+    document.getElementById('email').innerHTML = document.getElementById('emailField').value;
+    document.getElementById('LinkedIn').innerHTML = document.getElementById('LinkedInField').value;
+    document.getElementById('objective').innerHTML = document.getElementById('objectiveField').value;
+
+    // Skills
+    const skills = document.querySelectorAll('#skills-container input');
+    const skillsList = document.getElementById('Skills');
+    skillsList.innerHTML = '';
+    skills.forEach(skill => {
+        const li = document.createElement('li');
+        li.innerHTML = skill.value;
+        skillsList.appendChild(li);
+    });
+
+    // Academic Qualifications
+    const qualifications = document.querySelectorAll('.QualificationField');
+    const qualificationsList = document.getElementById('Qualification');
+    qualificationsList.innerHTML = '';
+    qualifications.forEach(qualification => {
+        const li = document.createElement('li');
+        li.innerHTML = qualification.value;
+        qualificationsList.appendChild(li);
+    });
+
+    // Projects
+    const projects = document.querySelectorAll('.ProjectField');
+    const projectsList = document.getElementById('ProjectsList');
+    projectsList.innerHTML = '';
+    projects.forEach(project => {
+        const div = document.createElement('div');
+        div.setAttribute('class', 'project');
+        div.innerHTML = `<h5>Project Title</h5><p>${project.value}</p>`;
+        projectsList.appendChild(div);
+    });
+}
+
+function printCV() {
+    window.print();
+}
+</script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

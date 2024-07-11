@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="cv-form">
+        <br><br>
+        <h1 class="text-center">Resume Generator</h1>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nameField" placeholder="Enter Your Name">
+                    <br>
+                    <input type="number" class="form-control" id="phoneField" placeholder="Enter Phone Number">
+                    <br>
+                    <textarea class="form-control" id="addressField" placeholder="Enter Your Address" rows="7"></textarea>
+                    <br>
+                    <div class="form-group">
+                        <label for="profileField" class="form-label">Choose Your Photo</label>
+                        <input type="file" class="form-control-file" id="profileField">
+                    </div>
+                    <br>
+                    <p class="text-secondary text-center">Important Links</p>
+                    <br>
+                    <input type="text" class="form-control" id="emailField" placeholder="Enter Email Address">
+                    <br>
+                    <input type="text" class="form-control" id="linkedInField" placeholder="Enter LinkedIn Profile URL">
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Professional Information</h3>
+                <div class="form-group">
+                    <textarea class="form-control" id="objectiveField" placeholder="Enter Objective" rows="7"></textarea>
+                </div>
+                <br>
+                <div class="form-group" id="AcademicQualification">
+                    <p class="text-secondary text-center">Academic Qualifications</p>
+                    <textarea class="form-control academicQualificationField" rows="3" placeholder="Enter Academic Qualification"></textarea>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewAcademicQualificationField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group" id="Projects">
+                    <p class="text-secondary text-center">Projects</p>
+                    <textarea class="form-control projectField" rows="3" placeholder="Enter Project"></textarea>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewProjectField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group" id="Skills">
+                    <p class="text-secondary text-center">Skills</p>
+                    <textarea class="form-control skillsField" rows="3" placeholder="Enter Skills"></textarea>
+                    <div class="container mt-2" style="text-align: center;">
+                        <button class="btn-lg btn-primary" onclick="addNewSkillsField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-lg btn-primary" onclick="generateCV()">Generate Resume</button>
+        </div>
+    </div>
+
+    <div class="resume-wrapper" id="cv-template">
+        <div class="header">
+            <h1 id="name">Full Name</h1>
+        </div>
+        <div class="content">
+            <div class="left-side text-center">
+                <img id="profile" src="Profile.png" alt="Profile Picture" class="img-fluid">
+                <div class="contact-info">
+                    <p id="phone">Contact: (123) 456-7890</p>
+                    <p id="address">Address: 123 Main St, City, Country</p>
+                    <p id="email">Email: <a id="emailLink" href="mailto:example@example.com">example@example.com</a></p>
+                    <p id="linkedIn">LinkedIn: <a id="linkedInLink" href="https://www.linkedin.com/in/example">https://www.linkedin.com/in/example</a></p>
+                </div>
+            </div>
+            <div class="right-side">
+                <div class="section">
+                    <div class="section-title">Objective</div>
+                    <div class="section-content">
+                        <p id="objectiveContent"></p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Academic Qualifications</div>
+                    <div class="section-content">
+                        <ul id="academicQualificationsList">
+                            <!-- Dynamic content will be added here -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Projects</div>
+                    <div class="section-content">
+                        <ul id="projectsList">
+                            <!-- Dynamic content will be added here -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div class="section-content">
+                        <ul id="skillsList">
+                            <!-- Dynamic content will be added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-3 text-center">
+            <button class="btn btn-lg btn-primary" onclick="printCV()">Print Resume</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+    <script>
+	// Function to generate the resume
+function generateCV() {
+    // Hide CV form container and show resume template container
+    document.getElementById('cv-form').style.display = 'none';
+    document.getElementById('cv-template').style.display = 'block';
+
+    // Populate resume template with user-inputted data
+    document.getElementById('name').innerText = document.getElementById('nameField').value;
+    document.getElementById('phone').innerText = 'Contact: ' + document.getElementById('phoneField').value;
+    document.getElementById('address').innerText = 'Address: ' + document.getElementById('addressField').value;
+    document.getElementById('emailLink').href = 'mailto:' + document.getElementById('emailField').value;
+    document.getElementById('emailLink').innerText = document.getElementById('emailField').value;
+    document.getElementById('linkedInLink').href = document.getElementById('linkedInField').value;
+    document.getElementById('linkedInLink').innerText = document.getElementById('linkedInField').value;
+    document.getElementById('objectiveContent').innerText = document.getElementById('objectiveField').value;
+
+    // Display selected profile photo
+    var profilePhoto = document.getElementById('profileField').files[0];
+    if (profilePhoto) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var profileImage = document.getElementById('profile');
+            profileImage.src = event.target.result;
+        };
+        reader.readAsDataURL(profilePhoto);
+    }
+
+    // Populate Academic Qualifications
+    var academicQualifications = document.querySelectorAll('.academicQualificationField');
+    academicQualifications.forEach(function(field) {
+        if (field.value.trim() !== '') {
+            var li = document.createElement('li');
+            li.innerText = field.value.trim();
+            document.getElementById('academicQualificationsList').appendChild(li);
+        }
+    });
+
+    // Populate Projects
+    var projects = document.querySelectorAll('.projectField');
+    projects.forEach(function(field) {
+        if (field.value.trim() !== '') {
+            var li = document.createElement('li');
+            li.innerText = field.value.trim();
+            document.getElementById('projectsList').appendChild(li);
+        }
+    });
+
+    // Populate Skills
+    var skills = document.querySelectorAll('.skillsField');
+    skills.forEach(function(field) {
+        if (field.value.trim() !== '') {
+            var li = document.createElement('li');
+            li.innerText = field.value.trim();
+            document.getElementById('skillsList').appendChild(li);
+        }
+    });
+}
+
+// Function to add new Academic Qualification field
+function addNewAcademicQualificationField() {
+    var container = document.getElementById('AcademicQualification');
+    var textarea = document.createElement('textarea');
+    textarea.className = 'form-control academicQualificationField';
+    textarea.setAttribute('rows', '3');
+    textarea.placeholder = 'Enter Academic Qualification';
+    container.insertBefore(textarea, container.lastElementChild);
+}
+
+// Function to add new Project field
+function addNewProjectField() {
+    var container = document.getElementById('Projects');
+    var textarea = document.createElement('textarea');
+    textarea.className = 'form-control projectField';
+    textarea.setAttribute('rows', '3');
+    textarea.placeholder = 'Enter Project';
+    container.insertBefore(textarea, container.lastElementChild);
+}
+
+// Function to add new Skills field
+function addNewSkillsField() {
+    var container = document.getElementById('Skills');
+    var textarea = document.createElement('textarea');
+    textarea.className = 'form-control skillsField';
+    textarea.setAttribute('rows', '3');
+    textarea.placeholder = 'Enter Skills';
+    container.insertBefore(textarea, container.lastElementChild);
+}
+
+// Function to print the generated resume
+function printCV() {
+    window.print();
+}
+
+    </script>
+</body>
+</html>
+

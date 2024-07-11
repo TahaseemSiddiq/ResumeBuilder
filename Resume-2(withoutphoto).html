@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .resume-wrapper {
+            width: 80%;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #fff;
+            font-family: 'Arial', sans-serif;
+            max-width: 1000px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+        }
+        .left-side, .right-side {
+            width: 48%;
+        }
+        .contact-info p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .skills, .section {
+            margin-top: 40px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .section-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section-content ul li {
+            margin-bottom: 10px;
+            padding-left: 15px;
+            position: relative;
+        }
+        .section-content ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .project {
+            margin-bottom: 20px;
+        }
+        .project h5 {
+            margin: 0 0 5px;
+            font-size: 16px;
+        }
+        .project p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="cv-form">
+        <br><br>
+        <h1 class="text-center">Resume Generator</h1>
+        <br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Personal information</h3>
+                <div class="form-group">
+                    <br><br>
+                    <input type="text" class="form-control" id="nameField" placeholder="Enter Your Name">
+                    <br>
+                    <input type="number" class="form-control" id="phoneField" placeholder="Enter Phone Number">
+                    <br>
+                    <textarea name="" id="addressField" placeholder="Enter Your Address" class="form-control" rows="7"></textarea>
+                    <br>
+
+                    <p class="text-secondary text-center">Important Links</p>
+                    <br>
+                    <input type="link" class="form-control" id="emailField" placeholder="Enter Email link">
+                    <br>
+                    <input type="link" class="form-control" id="LinkedInField" placeholder="Enter LinkedIn link">
+                    <br>
+                    
+                    <p class="text-secondary text-center">Skills</p>
+                    <div class="form-group" id="skills">
+                        <textarea name="" rows="3" placeholder="Enter Skill" class="form-control skillField" rows="7"></textarea>
+                        <div class="container mt-2" style="text-align: center;" id="addSkill">
+                            <button class="btn-lg btn-primary" onclick="addNewSkillField()"> Add </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Professional Information</h3>
+                <br><br>
+                <div class="form-group mt-2">
+                    <textarea name="" id="objectiveField" placeholder="Enter Objective " class="form-control" rows="7"></textarea>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="AcademicQualification">
+                    <p class="text-secondary text-center">Academic Qualifications</p>
+                    <textarea name="" rows="3" placeholder="Enter Academic Qualifications" class="form-control academicQualificationField" rows="7"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addQualification">
+                        <button class="btn-lg btn-primary" onclick="addNewAcademicQualificationField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="Projects">
+                    <p class="text-secondary text-center">Projects</p>
+                    <textarea name="" rows="3" placeholder="Enter Projects" class="form-control projectField" rows="7"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addProject">
+                        <button class="btn-lg btn-primary" onclick="addNewProjectField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-lg btn-primary" onclick="generateCV()">Generate Resume</button>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+    <div class="resume-wrapper" id="cv-template" style="display:none;">
+        <!-- Header -->
+        <div class="header">
+            <p style="font-weight: 1000; font-size: xx-large;" id="name">Full Name</p>
+        </div>
+        <div class="content">
+            <!-- Left Side -->
+            <div class="left-side">
+                <div class="contact-info">
+                    <p id="phone">Contact: (123) 456-7890</p>
+                    <p id="address">Address: 123 Main St, City, Country</p>
+                    <p>Email: <a href="#" id="email"><example class="gmaill com"></example></a></p>
+                    <p>LinkedIn: <a href="#" id="LinkedIn">https://www.LinkedIn.com/userName</a></p>
+                </div>
+                <div class="skills">
+                    <div class="section-title">Skills</div>
+                    <div class="section-content">
+                        <ul id="skillsList">
+                            <!-- Skills will be added here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side -->
+            <div class="right-side">
+                <!-- Objective -->
+                <div class="section">
+                    <div class="section-title">Objective</div>
+                    <div class="section-content">
+                        <p id="objective">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <!-- Academic Qualifications -->
+                <div class="section">
+                    <div class="section-title">Academic Qualifications</div>
+                    <div class="section-content">
+                        <ul id="Qualification">
+                            <!-- Academic qualifications will be added here -->
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+                <div class="section">
+                    <div class="section-title">Projects</div>
+                    <div class="section-content" id="ProjectsContent">
+                        <!-- Projects will be added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-3 text-center" id="print-button" style="display:none;">
+        <button class="btn btn-lg btn-primary" onclick="printCV()"> Print Resume </button>
+    </div>
+    <br><br>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function addNewSkillField() {
+            let newNode = document.createElement("textarea");
+            newNode.classList.add("form-control", "skillField", "mt-2");
+            newNode.setAttribute("rows", 3);
+            newNode.setAttribute("placeholder", "Enter Skill");
+            document.getElementById("skills").appendChild(newNode);
+        }
+
+        function addNewAcademicQualificationField() {
+            let newNode = document.createElement("textarea");
+            newNode.classList.add("form-control", "academicQualificationField", "mt-2");
+            newNode.setAttribute("rows", 3);
+            newNode.setAttribute("placeholder", "Enter Academic Qualifications");
+            document.getElementById("AcademicQualification").appendChild(newNode);
+        }
+
+        function addNewProjectField() {
+            let newNode = document.createElement("textarea");
+            newNode.classList.add("form-control", "projectField", "mt-2");
+            newNode.setAttribute("rows", 3);
+            newNode.setAttribute("placeholder", "Enter Projects");
+            document.getElementById("Projects").appendChild(newNode);
+        }
+
+        function generateCV() {
+            document.getElementById("cv-form").style.display = "none";
+            document.getElementById("cv-template").style.display = "block";
+            document.getElementById("print-button").style.display = "block";
+            
+            document.getElementById("name").innerHTML = document.getElementById("nameField").value;
+            document.getElementById("phone").innerHTML = document.getElementById("phoneField").value;
+            document.getElementById("address").innerHTML = document.getElementById("addressField").value;
+            document.getElementById("email").innerHTML = document.getElementById("emailField").value;
+            document.getElementById("LinkedIn").innerHTML = document.getElementById("LinkedInField").value;
+
+            let objective = document.getElementById("objectiveField").value;
+            document.getElementById("objective").innerHTML = objective;
+
+            let skills = document.getElementsByClassName("skillField");
+            let skillsList = "";
+            for (let e of skills) {
+                skillsList += `<li> ${e.value} </li>`;
+            }
+            document.getElementById("skillsList").innerHTML = skillsList;
+
+            let aqs = document.getElementsByClassName("academicQualificationField");
+            let qualificationsList = "";
+            for (let e of aqs) {
+                qualificationsList += `<li> ${e.value} </li>`;
+            }
+            document.getElementById("Qualification").innerHTML = qualificationsList;
+
+            let projects = document.getElementsByClassName("projectField");
+            let projectsList = "";
+            for (let e of projects) {
+                projectsList += `<div class="project">
+                                    <h5>Project</h5>
+                                    <p>${e.value}</p>
+                                 </div>`;
+            }
+            document.getElementById("ProjectsContent").innerHTML = projectsList;
+        }
+
+        function printCV() {
+            window.print();
+        }
+    </script>
+</body>
+</html>
+

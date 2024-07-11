@@ -1,0 +1,93 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #f7f7f7;
+    color: #333;
+}
+.resume-wrapper {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20mm auto;
+    padding: 20mm;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    text-align: left;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.header h1 {
+    margin-bottom: 10px;
+    font-size: 48px;
+    color: black;
+    font-weight: bold;
+    margin-left: 20px; /* Added margin to separate text from photo */
+}
+.header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.contact-info {
+    text-align: left;
+    margin-bottom: 20px;
+    margin-left: 170px; /* Adjusted to align with header */
+}
+.contact-info p {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+.content {
+    display: flex;
+    flex-direction: row;
+}
+.column {
+    width: 50%;
+    padding: 0 10mm;
+}
+.section-title {
+    background: #6c757d;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.section-content {
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+h5 {
+    color: #6c757d;
+    font-size: 18px;
+    margin-top: 10px;
+}
+@media print {
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+    .resume-wrapper {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    .column {
+        padding: 0 10mm;
+    }
+}

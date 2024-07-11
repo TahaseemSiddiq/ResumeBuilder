@@ -1,0 +1,74 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #f7f7f7;
+    color: #333;
+}
+.resume-wrapper {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20mm auto 0 auto; /* Restored top margin */
+    padding: 10mm 0; /* Removed side margins */
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+#cv-template {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10mm; /* Add side margin within the container */
+}
+#cv-template .col-md-4 {
+    background-color: #17a2b8;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+#cv-template .col-md-4 p {
+    margin-bottom: 10px;
+}
+#cv-template .col-md-4 a {
+    color: #fff; /* White color for links */
+}
+#cv-template .col-md-8 {
+    padding: 20px;
+}
+#cv-template .col-md-8 h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.card-header {
+    background-color: #17a2b8;
+    color: white;
+}
+.card {
+    margin-bottom: 10px; /* Reduced margin between sections */
+}
+.card-body ul {
+    padding-left: 20px;
+}
+@media print {
+    @page {
+        size: A4;
+        margin: 10mm;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+    .resume-wrapper {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+    #cv-template {
+        padding: 0;
+    }
+}

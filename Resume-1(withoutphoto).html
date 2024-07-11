@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Resume-1(withoutphoto).css">
+    
+</head>
+<body>
+    <div class="container" id="cv-form">
+        <br><br>
+    <h1 class="text-center">Resume Generator</h1>
+    <br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Personal information</h3>
+                <div class="form-group">
+                    <br><br>
+                    <input type="text" class="form-control" id="nameField" placeholder="Enter Your Name">
+                    <br>
+                    <input type="number" class="form-control" id="phoneField" placeholder="Enter Phone Number">
+                    <br>
+                    <textarea name="" id="addressField" placeholder="Enter Your Address" class="form-control" row="7"></textarea>
+                    <br>
+                    
+                    <p class="text-secondary text-center">Important Links</p>
+                    <br>
+                    <input type="link" class="form-control" id="emailField" placeholder="Enter LinkedIn link">
+                    <br>
+                    <input type="link" class="form-control" id="LinkedInField" placeholder="Enter LinkedIn link">
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Professional Information</h3>
+                <br><br>
+                <div class="form-group mt-2">
+                <textarea name="" id="objectiveField" placeholder="Enter Objective " class="form-control" row="7"></textarea>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="WorkExperience">
+                    <p class="text-secondary text-center">Work Experience</p>
+                    <textarea name="" rows="3" placeholder="Enter Work Experience "class="form-control workExperienceField" row="7"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addWork"  >
+                        <button class="btn-lg btn-primary" onclick="addNewWorkExperienceField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group mt-2" id="AcadamicQualification">
+                    <p class="text-secondary text-center">Acadamic Qualification</p>
+                    <textarea name="" rows="3" placeholder="Enter Acadamic Qualifications " class="form-control QualificationField" row="7"></textarea>
+                    <div class="container mt-2" style="text-align: center;" id="addQualification" >
+                        <button class="btn-lg btn-primary" onclick="addNewWorkAcadamicQualificationField()"> Add </button>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="container text-center mt-3">
+            <button class="btn btn-lg btn-primary" onclick="generateCV()">Generate Resume</button>
+        </div>
+    </div>
+    
+    <br><br><br>
+
+
+
+
+
+    <div class="resume-wrapper">
+        <div class="container-fluid" id="cv-template">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <!--first column-->
+                    <div class="container">
+                        <p id="phone">Contact Number</p>
+                        <p id="address">Permanent Address (Location)</p>
+                        <hr />
+                        
+                        <p> <a href="#1" id="email"><example class="gmaill com"></example></a> </p>
+                        <p><a href="#1" id="LinkedIn">https://www.LinkedIn.com/userName</a></p>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <!--second column-->
+                    <h1 id="name">Full Name</h1>
+                    <!--Objective-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Objective</h3>
+                        </div>
+                        <div class="card-body"  id="objective">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis eaque sint quaerat dolore temporibus ex atque cupiditate, ad, optio ullam dolores aliquid veritatis dolorem!</p>
+                        </div>
+                    </div>
+                    <!--Work Experience-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Work Experience</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="Experience">
+                                <li>Job Title 1 - Company Name, Location (January 2020 - Present)</li>
+                                <li>Job Title 2 - Company Name, Location (January 2018 - December 2019)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Qualifications-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Academic Qualification</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul id="Qualification">
+                                <li>Qualification 1</li>
+                                <li>Qualification 2</li>
+                                <li>Qualification 3</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Projects-->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="project">
+                                <h5>Project Title 1</h5>
+                                <p>Description of the project, technologies used, and your role.</p>
+                            </div>
+                            <div class="project">
+                                <h5>Project Title 2</h5>
+                                <p>Description of the project, technologies used, and your role.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container mt-3 text-center">
+        <button class="btn btn-lg btn-primary" onclick="printCV()"> Print Resume </button>
+    </div>
+    <br><br>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="validation.js"></script>
+</body>
+</html>

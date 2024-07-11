@@ -1,0 +1,72 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f7f7; /* Light gray background for the entire page */
+    font-size: 14px; /* Reduced font size */
+}
+.resume-wrapper {
+    width: 210mm; /* A4 width */
+    min-height: 297mm; /* A4 height */
+    margin: 20mm auto; /* Center the resume on the page */
+    padding: 10mm; /* Reduced padding */
+    background: white; /* White background for the resume */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px; /* Reduced margin */
+}
+.header img {
+    width: 100px; /* Reduced size */
+    height: 100px; /* Reduced size */
+    border-radius: 50%;
+    margin-right: 10px; /* Reduced margin */
+}
+.header-content {
+    text-align: left;
+}
+.header-content h1 {
+    margin-bottom: 5px; /* Reduced margin */
+    font-size: 24px; /* Reduced font size */
+}
+.contact-info p {
+    margin-bottom: 3px; /* Reduced margin */
+}
+.section-title {
+    background: #007bff;
+    color: white;
+    padding: 5px; /* Reduced padding */
+    border-radius: 5px;
+    margin-bottom: 10px; /* Reduced margin */
+    font-size: 16px; /* Reduced font size */
+}
+.section {
+    page-break-inside: avoid;
+    margin-bottom: 10px; /* Reduced margin */
+}
+.section-content {
+    padding: 5px; /* Reduced padding */
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+@media print {
+    @page {
+        size: A4;
+        margin: 20mm;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+    .resume-wrapper {
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+

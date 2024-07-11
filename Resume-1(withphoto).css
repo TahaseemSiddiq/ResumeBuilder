@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.resume-wrapper {
+    margin: 20px 0;
+}
+
+#cv-template {
+    border: 2px solid #333;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#cv-template .card {
+    margin-bottom: 20px;
+}
+
+#cv-template h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+#cv-template h3 {
+    font-size: 1.75em;
+}
+
+#cv-template .project h5 {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+#cv-template p {
+    margin: 5px 0;
+}
+
+#cv-template ul {
+    padding-left: 20px;
+}
+
+#cv-template ul li {
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
